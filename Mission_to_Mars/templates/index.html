@@ -18,16 +18,17 @@
     <div class="container-fluid">
         <div class="row">
             <h3>Latest Mars News</h3>
-            <h4>{{ space.art_title }}</h4>
-            <p>{{ space.paragraph}}</p>
+            <h4>{{ mars_info.art_title }}</h4>
+            <p>{{ mars_info.paragraph}}</p>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <h3>Featured Mars Image</h3>
-                <img src="{{ space.image}}" alt="featured mars image">
+                <img src="{{ mars_info.image }}" alt="featured mars image">
             </div>
             <div class="col-md-6">
-                {{ space.html_table }}
+                <h3>Mars Facts Table</h3>
+                {{ mars_info.table|safe }}
             </div>
         </div>
     </div>
@@ -35,43 +36,24 @@
         <div class="row">
             <div class="col">
                 <div class="text-center">
-                    <h3>Mars Hemispheres</h3>
+                    <h2>Mars Hemispheres</h2>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row d-flex">
+            
+            {% for dict in mars_info.hemispheres %}
+
             <div class="col-3">
-                <div class="card">
-                    <img src="{{ space.image_url[0] }}" class="card-img-top">\
+                <div class="card" style="width: 20rem;">
+                    <img src="{{ dict.img_url }}" class="img-fluid" style="width: 20rem;">
                     <div class="card-body">
-                        <h5 class="card_title">{{ space.title[0]}}</h5>
+                        <h5 class="card_title">{{ dict.title }}</h5>
                     </div>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="card">
-                    <img src="{{ space.image_url[1] }}" class="card-img-top">\
-                    <div class="card-body">
-                        <h5 class="card_title">{{ space.title[1]}}</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card">
-                    <img src="{{ space.image_url[2] }}" class="card-img-top">\
-                    <div class="card-body">
-                        <h5 class="card_title">{{ space.title[2]}}</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card">
-                    <img src="{{ space.image_url[3] }}" class="card-img-top">\
-                    <div class="card-body">
-                        <h5 class="card_title">{{ space.title[3]}}</h5>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+            
         </div>
     </div>
 </body>
